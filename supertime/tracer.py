@@ -1,6 +1,6 @@
 import sys
 import weakref
-from typing import Union, Dict, Any
+from typing import Union, Dict, Any, TypeAlias
 from collections.abc import Coroutine
 from asyncio import sleep as async_sleep
 from time import sleep as sync_sleep
@@ -9,7 +9,12 @@ from emptylog import LoggerProtocol
 from displayhooks import not_display
 
 
-class UsageTracer(Coroutine[Any, Any, None]):
+if sys.version_info >= (3, 9):
+    CoroutineClass: TypeAlias = Coroutine[Any, Any, None]
+else:
+    CoroutineClass = Coroutine
+
+class UsageTracer(CoroutineClass):
     def __init__(self, number: Union[int, float], logger: LoggerProtocol) -> None:
         self.flags: Dict[str, bool] = {}
         self.coroutine = self.async_sleep_option(number, self.flags, logger)
@@ -28,7 +33,7 @@ class UsageTracer(Coroutine[Any, Any, None]):
         pass
 
     @staticmethod
-    def sync_sleep_option(number: Union[int, float], flags: Dict[str, bool], wrapped_coroutine: Coroutine[Any, Any, None], logger: LoggerProtocol) -> None:
+    def sync_sleep_option(number: Union[int, float], flags: Dict[str, bool], wrapped_coroutine: CoroutineClass, logger: LoggerProtocol) -> None:
         if not flags.get('used', False):
             wrapped_coroutine.close()
             logger.info(f'Run sync sleep {number} sec...')
