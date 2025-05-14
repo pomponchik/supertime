@@ -30,11 +30,10 @@ class UsageTracer(Coroutine[Any, Any, None]):
     @staticmethod
     def sync_sleep_option(number: Union[int, float], flags: Dict[str, bool], wrapped_coroutine: Coroutine[Any, Any, None], logger: LoggerProtocol) -> None:
         if not flags.get('used', False):
-            if sys.getrefcount(wrapped_coroutine) < 5:
-                wrapped_coroutine.close()
-                logger.info(f'Run sync sleep {number} sec...')
-                sync_sleep(number)
-                logger.info('The end of sync sleeping.')
+            wrapped_coroutine.close()
+            logger.info(f'Run sync sleep {number} sec...')
+            sync_sleep(number)
+            logger.info('The end of sync sleeping.')
 
     @staticmethod
     async def async_sleep_option(number: Union[int, float], flags: Dict[str, bool], logger: LoggerProtocol) -> None:
