@@ -1,7 +1,6 @@
 import sys
 import weakref
-from typing import Union, Dict, Type, Any, Optional
-from types import TracebackType
+from typing import Union, Dict, Any
 from collections.abc import Coroutine
 from asyncio import sleep as async_sleep
 from time import sleep as sync_sleep
@@ -10,26 +9,26 @@ from emptylog import LoggerProtocol
 from displayhooks import not_display
 
 
-class UsageTracer(Coroutine):
+class UsageTracer(Coroutine[Any, Any, None]):
     def __init__(self, number: Union[int, float], logger: LoggerProtocol) -> None:
         self.flags: Dict[str, bool] = {}
         self.coroutine = self.async_sleep_option(number, self.flags, logger)
         weakref.finalize(self, self.sync_sleep_option, number, self.flags, self.coroutine, logger)
 
-    def __await__(self):
+    def __await__(self) -> Any:  # pragma: no cover
         return self.coroutine.__await__()
 
-    def send(self, value: Any) -> None:
+    def send(self, value: Any) -> Any:
         return self.coroutine.send(value)
 
-    def throw(self, exception_type: Optional[Type[BaseException]], value: Optional[BaseException] = None, traceback: Optional[TracebackType] = None) -> None:
+    def throw(self, exception_type: Any, value: Any = None, traceback: Any = None) -> None:  # pragma: no cover
         pass
 
-    def close(self) -> None:
+    def close(self) -> None:  # pragma: no cover
         pass
 
     @staticmethod
-    def sync_sleep_option(number: Union[int, float], flags: Dict[str, bool], wrapped_coroutine: Coroutine, logger: LoggerProtocol) -> None:
+    def sync_sleep_option(number: Union[int, float], flags: Dict[str, bool], wrapped_coroutine: Coroutine[Any, Any, None], logger: LoggerProtocol) -> None:
         if not flags.get('used', False):
             if sys.getrefcount(wrapped_coroutine) < 5:
                 wrapped_coroutine.close()
