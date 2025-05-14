@@ -7,7 +7,7 @@ from time import sleep as sync_sleep
 
 if sys.version_info > (3, 9):  # pragma: no cover
     from typing import TypeAlias
-else:
+else:  # pragma: no cover
     from typing_extensions import TypeAlias
 
 from emptylog import LoggerProtocol
@@ -16,7 +16,7 @@ from displayhooks import not_display
 
 if sys.version_info >= (3, 9):  # pragma: no cover
     CoroutineClass: TypeAlias = Coroutine[Any, Any, None]
-else:
+else:  # pragma: no cover
     CoroutineClass = Coroutine
 
 class UsageTracer(CoroutineClass):
