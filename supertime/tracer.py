@@ -14,10 +14,10 @@ from emptylog import LoggerProtocol
 from displayhooks import not_display
 
 
-if sys.version_info >= (3, 9):  # pragma: no cover
-    CoroutineClass: TypeAlias = Coroutine[Any, Any, None]
-else:  # pragma: no cover
+if sys.version_info <= (3, 10):  # pragma: no cover
     CoroutineClass = Coroutine
+else:  # pragma: no cover
+    CoroutineClass: TypeAlias = Coroutine[Any, Any, None]
 
 class UsageTracer(CoroutineClass):
     def __init__(self, number: Union[int, float], logger: LoggerProtocol) -> None:
