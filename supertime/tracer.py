@@ -5,10 +5,10 @@ from collections.abc import Coroutine
 from asyncio import sleep as async_sleep
 from time import sleep as sync_sleep
 
-if sys.version_info > (3, 9):  # pragma: no cover
-    from typing import TypeAlias
-else:  # pragma: no cover
+if sys.version_info <= (3, 10):  # pragma: no cover
     from typing_extensions import TypeAlias
+else:  # pragma: no cover
+    from typing import TypeAlias
 
 from emptylog import LoggerProtocol
 from displayhooks import not_display
