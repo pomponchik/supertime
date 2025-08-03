@@ -8,7 +8,7 @@ version = "0.0.1"
 authors = [
   { name="Evgeniy Blinov", email="zheni-b@yandex.ru" },
 ]
-description = 'A living example of context-aware functions'
+description = 'A living example of superfunctions'
 readme = "README.md"
 requires-python = ">=3.8"
 dependencies = [
@@ -34,6 +34,8 @@ classifiers = [
 ]
 keywords = [
     'context-aware functions',
+    'superfunctions',
+    'transfunctions',
     'example',
 ]
 
