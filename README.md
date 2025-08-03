@@ -8,6 +8,7 @@
 [![Test-Package](https://github.com/pomponchik/supertime/actions/workflows/tests_and_coverage.yml/badge.svg)](https://github.com/pomponchik/supertime/actions/workflows/tests_and_coverage.yml)
 [![Python versions](https://img.shields.io/pypi/pyversions/supertime.svg)](https://pypi.python.org/pypi/supertime)
 [![PyPI version](https://badge.fury.io/py/supertime.svg)](https://badge.fury.io/py/supertime)
+[![Checked with mypy](http://www.mypy-lang.org/static/mypy_badge.svg)](http://mypy-lang.org/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
 
