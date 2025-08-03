@@ -5,8 +5,8 @@ from time import sleep as sync_sleep
 from transfunctions import superfunction, sync_context, async_context, await_it
 
 
-@superfunction(tilde_syntax=False)
-def supersleep(number):
+@superfunction(tilde_syntax=False)  # type: ignore[misc]
+def supersleep(number: int) -> None:
     with sync_context:  # pragma: no cover
         sync_sleep(number)
 
