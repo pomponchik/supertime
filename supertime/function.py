@@ -1,4 +1,3 @@
-from typing import Union, NoReturn
 from asyncio import sleep as async_sleep
 from time import sleep as sync_sleep
 
