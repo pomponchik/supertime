@@ -12,7 +12,7 @@ description = 'A living example of context-aware functions'
 readme = "README.md"
 requires-python = ">=3.8"
 dependencies = [
-    'displayhooks>=0.0.4',
+    'transfunctions==0.0.7',
     'emptylog>=0.0.9',
     'typing_extensions ; python_version <= "3.9"',
 ]

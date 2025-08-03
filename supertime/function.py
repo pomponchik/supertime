@@ -1,9 +1,14 @@
-from typing import Union
+from typing import Union, NoReturn
+from asyncio import sleep as async_sleep
+from time import sleep as sync_sleep
 
-from emptylog import EmptyLogger, LoggerProtocol
-
-from supertime.tracer import UsageTracer
+from transfunctions import superfunction, sync_context, async_context, await_it
 
 
-def supersleep(number: Union[int, float], logger: LoggerProtocol = EmptyLogger()) -> UsageTracer:
-    return UsageTracer(number, logger)
+@superfunction(tilde_syntax=False)
+def supersleep(number):
+    with sync_context:
+        sync_sleep(number)
+
+    with async_context:
+        await_it(async_sleep(number))
