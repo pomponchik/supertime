@@ -6,7 +6,7 @@ from transfunctions import superfunction, sync_context, async_context, await_it
 
 
 @superfunction(tilde_syntax=False)
-def supersleep(number: Union[int, float]) -> NoReturn:  # type: ignore[misc]
+def supersleep(number: Union[int, float]) -> NoReturn:
     with sync_context:  # pragma: no cover
         sync_sleep(number)
     with async_context:  # pragma: no cover
