@@ -11,6 +11,7 @@
 [![Checked with mypy](http://www.mypy-lang.org/static/mypy_badge.svg)](http://mypy-lang.org/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
+
 The [transfunctions](https://github.com/pomponchik/transfunctions) library introduces a new type of function: `superfunction`. They can behave both as regular and asynchronous functions, depending on the context, that is, on how the user uses them. This micro-library demonstrates the smallest example of this concept that I could come up with.
 
 Install it:
